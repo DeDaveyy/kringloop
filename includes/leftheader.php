@@ -66,6 +66,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- Font Awesome icons -->
-<script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/5989d4f87d.js" crossorigin="anonymous"></script>
 </body>
 </html>
