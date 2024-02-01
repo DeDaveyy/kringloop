@@ -40,21 +40,30 @@
                 <a class="nav-link" href="home.php">Home</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Ritten
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                     <a class="dropdown-item" href="ritten_planning.php">Ritten Planning</a>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="voorraad.php">Voorraad</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="beheer.php">Beheer</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="admin.php">Admin</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                    <a class="dropdown-item" href="#">Admin Item 1</a>
+                    <a class="dropdown-item" href="#" data-toggle="dropdown-submenu" aria-haspopup="true" aria-expanded="false">Admin Item 2</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Sub-Item 1</a>
+                        <a class="dropdown-item" href="#">Sub-Item 2</a>
+                        <a class="dropdown-item" href="#">Sub-Item 3</a>
+                    </div>
+                    <a class="dropdown-item" href="#">Admin Item 3</a>
+                </div>
             </li>
         </ul>
     </div>
