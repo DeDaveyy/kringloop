@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Login functie 
  * Deze functie is voor het inloggen die in de [pages/login.php] staat.
