@@ -30,7 +30,6 @@
 <nav class="navbar navbar-expand-lg navbar-custom">
     <a class="navbar-brand" href="#">Kringloop centrum</a>
     <!-- Aanmelden button -->
-    <a class="btn custom-button" href="aanmelden.php">Aanmelden</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -66,6 +65,7 @@
                 </div>
             </li>
         </ul>
+        <a class="btn custom-button" href="./pages/login.php">Aanmelden</a>
     </div>
 </nav>
 
