@@ -66,6 +66,7 @@
                 </div>
             </li>
         </ul>
+        <a class="btn custom-button" href="./pages/login.php">Aanmelden</a>
     </div>
 </nav>
 
