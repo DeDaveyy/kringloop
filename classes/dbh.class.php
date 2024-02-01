@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 class Dbh {
 
     //Properties van de database.
@@ -23,5 +24,23 @@ class Dbh {
 
         return $pdo;
     }
+
+    public function registerUser($username, $password) {
+        // You can add additional parameters as needed for registration
+
+        $pdo = $this->connect();
+
+        // You should use prepared statements to prevent SQL injection
+        $stmt = $pdo->prepare("INSERT INTO gebruiker (gebruikersnaam, wachtwoord) VALUES (?, ?)");
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Bind parameters and execute the query
+        $stmt->execute([$username, $hashedPassword]);
+
+        // You can add error handling and return a success/failure indicator as needed
+        return true;
+    }
 }
+
+
 

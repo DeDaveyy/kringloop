@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($auth->login($username, $password)) {
 
-        header('Location: ./index.php');
+        header('Location: ../index.php');
         exit();
     } else {
 

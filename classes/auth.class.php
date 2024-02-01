@@ -19,11 +19,10 @@ class Auth {
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['wachtwoord']) && $user['is_geverifeerd']) {
+        if ($user && password_verify($password, $user['wachtwoord'])) {
             // Successful login
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['gebruikersnaam'];
-            $_SESSION['role'] = $user['rollen'];
             return true;
         } else {
             // Failed login
