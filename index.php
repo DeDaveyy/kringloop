@@ -1,5 +1,13 @@
 <?php
 
+    require "./classes/dbh.class.php";
+
+// Create an instance of the Dbh class
+$database = new Dbh();
+
+// Call the public getConnection method to get a database connection
+$pdo = $database->getConnection();
+
 ?>
 
 <!DOCTYPE html>
