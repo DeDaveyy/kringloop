@@ -7,21 +7,21 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Custom styles for the navbar */
+
         .navbar-custom {
-            background-color: #007bff; /* Blue background color */
+            background-color: #007bff; 
         }
         .navbar-custom a {
-            color: #fff !important; /* White text color */
+            color: #fff !important; 
         }
         .navbar-custom .dropdown-item {
-            color: #000 !important; /* Black text color for dropdown item */
+            color: #000 !important; 
         }
         .custom-button {
-            background-color: #007bff; /* Blue button color */
-            color: #fff !important; /* White text color */
-            border: 1px solid #fff; /* White border */
-            border-radius: 5px; /* Rounded corners */
+            background-color: #007bff; 
+            color: #fff !important; 
+            border: 1px solid #fff; 
+            border-radius: 5px; 
         }
     </style>
 </head>
@@ -29,8 +29,6 @@
 
 <nav class="navbar navbar-expand-lg navbar-custom">
     <a class="navbar-brand" href="#">Kringloop centrum</a>
-    <!-- Aanmelden button -->
-    <a class="btn custom-button" href="./pages/login.php">Aanmelden</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
