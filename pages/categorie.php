@@ -7,16 +7,20 @@ include ("../includes/leftheader.includes.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //Kijkt of het formulier is gestuurd
     if (isset($_POST['createCategory'])) {
         $name = $_POST['categoryName'];
         $code = $_POST['categoryCode'];
         createCategorie($pdo, $name, $code);
+        //Kijkt of het formulier is gestuurd
     } elseif (isset($_POST['updateCategory'])) {
+        //Kijkt of het formulier is gestuurd
         $id = $_POST['id'];
         $name = $_POST['categoryName'];
         $code = $_POST['categoryCode'];
         updateCategorie($pdo, $id, $name, $code);
     } elseif (isset($_POST['confirmDelete'])) {
+        
         $id = $_POST['id'];
         deleteCategorie($pdo, $id);
     }

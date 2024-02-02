@@ -5,17 +5,22 @@ ini_set('display_errors', 1);
 require_once('../functions/klant.function.php');  
 include ("../includes/leftheader.includes.php");
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //Kijkt of het formulier is ontvangen
     if (isset($_POST['createKlant'])) {
+        //ontvangt de data en zet het in variabelen
         $name = $_POST["klantNaam"];
         $adres = $_POST['klantAdres'];
         $plaats = $_POST['klantPlaats'];
         $telefoon = $_POST['klantTelefoon'];
         $email = $_POST['klantEmail'];
         createKlant($pdo, $name, $adres, $plaats, $telefoon, $email);
-        header("Location: persoonsgegevens.php"); // Redirect after the function is executed
+        header("Location: persoonsgegevens.php"); // Stuurt je naar persoongegevens
         exit();
+        //Kijkt of het formulier is gestuurd
     } elseif (isset($_POST['updateKlant'])) {
+        //ontvangt de data en zet het in variabelen
         $id = $_POST['id'];
         $adres = $_POST['klantAdres'];
         $name = $_POST["klantNaam"];
@@ -23,12 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $telefoon = $_POST['klantTelefoon'];
         $email = $_POST['klantEmail'];
         updateKlant($pdo, $id, $name, $adres, $plaats, $telefoon, $email);
-        header("Location: persoonsgegevens.php"); // Redirect after the function is executed
+        header("Location: persoonsgegevens.php"); // Stuurt je naar persoongegevens
         exit();
+        //Kijkt of het formulier is ontvangen
     } elseif (isset($_POST['confirmDelete'])) {
+        //ontvangt de data en zet het in variabelen
         $id = $_POST['id'];
         deleteKlant($pdo, $id);
-        header("Location: persoonsgegevens.php"); // Redirect after the function is executed
+        header("Location: persoonsgegevens.php"); // Stuurt je naar persoongegevens
         exit();
     }
 }

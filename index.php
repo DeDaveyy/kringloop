@@ -1,5 +1,5 @@
 <?php
-session_start();
+//include de header.
 include("./includes/header.includes.php");
 
 ?>

@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="../src/style/main.css">
 <?php
-session_start();
 include ("../classes/dbh.class.php");
 // User class voor de login
 class User
