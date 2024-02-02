@@ -8,6 +8,9 @@ include ("./includes/header.includes.php");
     .card {
       background-color: #fff;
     }
+    .btn-primary {
+      width: 250px;
+    }
 </style>
 </head>
 <main class="mt-3">
@@ -16,18 +19,18 @@ include ("./includes/header.includes.php");
     <!-- Eerste Kolom -->
     <div class="col-md-6">
       <div class="card mb-3">
-        <div class="card-body d-flex flex-column align-items-center">
+        <div class="card-body d-flex flex-column align-items-left">
           <h5 class="card-title">Ritten</h5>
-          <h6>asddas<br/></h6>
-          <button class="btn btn-primary"><a href="#destination1" class="text-white">Ga naar het rit overzicht</a></button>
+          <h6>het rit overzicht<br/></h6>
+          <button class="btn btn-primary"><a href="#destination1" class="text-white">Ga naar ritten</a></button>
         </div>
       </div>
       
       <div class="card">
-        <div class="card-body d-flex flex-column align-items-center">
+        <div class="card-body d-flex flex-column align-items-left">
           <h5 class="card-title">Voorraad beheer</h5>
-          <h6>asddas<br/></h6>
-          <button class="btn btn-primary"><a href="#destination2" class="text-white">Go to Destination</a></button>
+          <h6>Het voorraad beheer<br/></h6>
+          <button class="btn btn-primary"><a href="#destination2" class="text-white">Ga naar voorraad beheer</a></button>
         </div>
       </div>
     </div>
@@ -35,18 +38,18 @@ include ("./includes/header.includes.php");
     <!-- Tweede Kolom -->
     <div class="col-md-6">
       <div class="card mb-3">
-        <div class="card-body d-flex flex-column align-items-center">
+        <div class="card-body d-flex flex-column align-items-left">
           <h5 class="card-title">Kledingstukken</h5>
-          <h6>asddas<br/></h6>
+          <h6>Alle kledingstukken<br/></h6>
           <button class="btn btn-primary"><a href="#destination3" class="text-white">Ga naar kledingstukken</a></button>
         </div>
       </div>
       
       <div class="card">
-        <div class="card-body d-flex flex-column align-items-center">
+        <div class="card-body d-flex flex-column align-items-left">
           <h5 class="card-title">Klanten</h5>
-          <h6>asddas<br/></h6>
-          <button class="btn btn-primary"><a href="#destination4" class="text-white">Ga naar de klant pagina</a></button>
+          <h6>Klantenoverzicht<br/></h6>
+          <button class="btn btn-primary"><a href="#destination4" class="text-white">Ga naar klanten</a></button>
         </div>
       </div>
     </div>
