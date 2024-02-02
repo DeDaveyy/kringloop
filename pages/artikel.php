@@ -11,30 +11,40 @@ require ("../functions/categorie.function.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //Kijkt of het formulier is verstuurd
     if (isset($_POST['createArtikel'])) {
+        //krijgt data van het formulier
         $categorie_id = $_POST['create_categorie_id'];
         $naam = $_POST['create_naam'];
         $prijs_ex_btw = $_POST['create_prijs_ex_btw'];
+        //Roept de functie create Artikel op met de ontvangen data.
         createArtikel($pdo, $categorie_id, $naam, $prijs_ex_btw);
         header("Location: artikel.php"); // Stuurt je terug nadat de functie is uitgevoerd
         exit();
+        
+        //Kijkt of de data voor update is ontvangen
     } elseif (isset($_POST['updateArtikel'])) {
+        //Krijgt data van het formulier
         $id = $_POST['id'];
         $categorie_id = $_POST['update_categorie_id'];
         $naam = $_POST['update_naam'];
         $prijs_ex_btw = $_POST['update_prijs_ex_btw'];
+        //Roept de functie  updateArtikel aan en geeft deze de ontvangen data
         updateArtikel($pdo, $id, $categorie_id, $naam, $prijs_ex_btw);
         header("Location: artikel.php"); // Stuurt je terug nadat de functie is uitgevoerd
         exit();
+        //Kijkt of formulier is ontvangen
     } elseif (isset($_POST['confirmDelete'])) {
+        //Krijgt data van het formulier
         $id = $_POST['id'];
+        //Roept  de delete functie aan en geef hem de id mee
         deleteArtikel($pdo, $id);
         header("Location: artikel.php"); // Stuurt je terug nadat de functie is uitgevoerd
         exit();
     }
 }
 
-
+//Variablen  die worden gebruikt in de view 
 $artikels = readArtikels($pdo);
 $categories = readCategories($pdo);
 ?>
@@ -90,7 +100,7 @@ $categories = readCategories($pdo);
     <form class="form-inline mb-3">
         <div class="form-group mx-sm-3 mb-2">
             <label for="searchInput" class="sr-only">Zoeken</label>
-            <input type="text" class="form-control" id="searchInput" placeholder="Search by name or category">
+            <input type="text" class="form-control" id="searchInput" placeholder="Zoek bij naam of categorie">
         </div>
         <button type="button" class="btn btn-primary mb-2" onclick="searchArtikels()" placeholder="Nog niet functioneel">Zoek</button>
     </form>
@@ -107,8 +117,12 @@ $categories = readCategories($pdo);
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($artikels as $artikel) : ?>
+            <?php 
+            //Maakt een loop om alle artikelen in de database te laten zien
+            foreach ($artikels as $artikel) : 
+            ?>
                 <tr>
+                    <!--Laat de data zien in de tabel  -->
                     <td><?php echo $artikel['artikel_id']; ?></td>
                     <td><?php echo $artikel['naam']; ?></td>
                     <td><?php echo $artikel['prijs_ex_btw']; ?></td>
@@ -117,8 +131,8 @@ $categories = readCategories($pdo);
                     <td>
                         <form method="post" action="">
                             <input type="hidden" name="id" value="<?php echo $artikel['artikel_id']; ?>">
-                            <button type="button" class="btn btn-warning btn-sm" onclick="openEditModal(<?php echo $artikel['artikel_id']; ?>, '<?php echo $artikel['naam']; ?>', <?php echo $artikel['categorie_id']; ?>, '<?php echo $artikel['prijs_ex_btw']; ?>')">Edit</button>
-                            <button type="submit" name="confirmDelete" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="button" class="btn btn-warning btn-sm" onclick="openEditModal(<?php echo $artikel['artikel_id']; ?>, '<?php echo $artikel['naam']; ?>', <?php echo $artikel['categorie_id']; ?>, '<?php echo $artikel['prijs_ex_btw']; ?>')">Aanpassen</button>
+                            <button type="submit" name="confirmDelete" class="btn btn-danger btn-sm">Verwijderen</button>
                         </form>
                     </td>
                 </tr>
@@ -127,14 +141,15 @@ $categories = readCategories($pdo);
     </table>
 
     <!-- Button to open Create Artikel modal -->
-    <button type="button" class="btn btn-success mt-3" onclick="openCreateModal()">Create Artikel</button>
+    <button type="button" class="btn btn-success mt-3" onclick="openCreateModal()">
+     Artikel aanmaken</button>
 
 <!-- Create Artikel Modal -->
 <div class="modal" id="createArtikelModal" tabindex="-1" role="dialog" aria-labelledby="createArtikelModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createArtikelModalLabel">Create Artikel</h5>
+                <h5 class="modal-title" id="createArtikelModalLabel">Aanmaken Artikel</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal('#createArtikelModal')">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -158,7 +173,7 @@ $categories = readCategories($pdo);
                         <label for="createArtikelPrijsExBtw">Prijs (excl. BTW):</label>
                         <input type="text" class="form-control" id="createArtikelPrijsExBtw" name="create_prijs_ex_btw" required>
                     </div>
-                    <button type="submit" name="createArtikel" class="btn btn-success">Create Artikel</button>
+                    <button type="submit" name="createArtikel" class="btn btn-success">Aanmaken Artikel</button>
                 </form>
             </div>
         </div>
@@ -170,7 +185,7 @@ $categories = readCategories($pdo);
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editArtikelModalLabel">Edit Artikel</h5>
+                <h5 class="modal-title" id="editArtikelModalLabel">Aanpassen Artikel</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal('#editArtikelModal')">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -195,7 +210,7 @@ $categories = readCategories($pdo);
                         <label for="editArtikelPrijsExBtw">Prijs (excl. BTW):</label>
                         <input type="text" class="form-control" id="editArtikelPrijsExBtw" name="update_prijs_ex_btw" required>
                     </div>
-                    <button type="submit" name="updateArtikel" class="btn btn-primary">Update Artikel</button>
+                    <button type="submit" name="updateArtikel" class="btn btn-primary">Aanpassen Artikel</button>
                 </form>
             </div>
         </div>
@@ -212,48 +227,35 @@ $categories = readCategories($pdo);
 src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
 </script>
 <script>
+    //Voegt een eventlistener als je op ESC drukt dat de modal sluit.
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
             closeAllModals();
         }
     });
+    
 
-    function searchArtikels() {
-        var searchInput = document.getElementById('searchInput').value.toLowerCase();
-        var tableRows = document.querySelectorAll('.table tbody tr');
-
-        tableRows.forEach(function (row) {
-            var artikelName = row.querySelector('td:nth-child(2)').innerText.toLowerCase();
-            var categoryName = row.querySelector('td:nth-child(5)').innerText.toLowerCase();
-
-            if (artikelName.includes(searchInput) || categoryName.includes(searchInput)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
-
+    //Open de edit modal
     function openEditModal(id, naam, categorie_id, prijs_ex_btw) {
-        // Set values in the Edit Artikel Modal
+        // Zet waarde edit artikel modal
         document.getElementById('editArtikelId').value = id;
         document.getElementById('editArtikelNaam').value = naam;
         document.getElementById('editArtikelCategorieId').value = categorie_id;
         document.getElementById('editArtikelPrijsExBtw').value = prijs_ex_btw;
 
-        // Open the Edit Artikel Modal
+        // Open de Edit Artikel Modal
         document.getElementById('editArtikelModal').style.display = 'block';
         document.querySelector('.modal-overlay').style.display = 'block';
     }
 
     function openCreateModal() {
-        // Open the Create Artikel Modal
+        // Open de Create Artikel Modal
         document.getElementById('createArtikelModal').style.display = 'block';
         document.querySelector('.modal-overlay').style.display = 'block';
     }
 
     function closeModal(modalId) {
-        // Close the modal
+        // Close de modal
         document.querySelector(modalId).style.display = 'none';
         document.querySelector('.modal-overlay').style.display = 'none';
     }
