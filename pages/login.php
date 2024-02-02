@@ -1,18 +1,6 @@
+<link rel="stylesheet" href="../src/style/main.css">
 <?php
-// Database config
-$dbHost = 'localhost';
-$dbName = 'duurzaam';
-$dbUser = 'root';
-$dbPass = '';
-
-// Database connectie met PDO
-try {
-    $pdo = new PDO("mysql:host={$dbHost};dbname={$dbName}", $dbUser, $dbPass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connectie gefaald: " . $e->getMessage());
-}
-
+include ("../classes/dbh.class.php");
 // User class voor de login
 class User
 {
@@ -99,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="password">Wachtwoord</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary mainbuttons">Login</button>
                 </form>
             </div>
         </div>
