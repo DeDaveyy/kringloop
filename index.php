@@ -23,6 +23,7 @@ include ("./includes/header.includes.php");
           <h6>Het voorraad beheer<br/></h6>
           <button class="btn btn-primary mainbuttons"><a href="#destination2" class="text-white">Ga naar voorraad beheer</a></button>
         </div>
+        
       </div>
     </div>
 
