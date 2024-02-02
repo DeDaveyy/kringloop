@@ -1,8 +1,10 @@
 <?php
-require_once('../functions/categorie.crud.php');
-include ("../includes/leftheader.includes.php");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+require_once('../functions/categorie.function.php');
+include ("../includes/leftheader.includes.php");
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['createCategory'])) {
@@ -89,8 +91,8 @@ $categories = readCategories($pdo);
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Category Name</th>
-                <th>Category Code</th>
+                <th>Code</th>
+                <th>Omschrijving</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -98,13 +100,13 @@ $categories = readCategories($pdo);
             <?php foreach ($categories as $category) : ?>
                 <tr>
                     <td><?php echo $category['id']; ?></td>
-                    <td><?php echo $category['categorie']; ?></td>
                     <td><?php echo $category['code']; ?></td>
+                    <td><?php echo $category['categorie']; ?></td>
                     <td>
                         <form method="post" action="categorie.php">
                             <input type="hidden" name="id" value="<?php echo $category['id']; ?>">
-                            <button type="button" class="btn btn-warning btn-sm" onclick="openEditModal(<?php echo $category['id']; ?>, '<?php echo $category['categorie']; ?>', '<?php echo $category['code']; ?>')">Edit</button>
-                            <button type="submit" name="confirmDelete" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="button" class="btn btn-warning btn-sm" onclick="openEditModal(<?php echo $category['id']; ?>, '<?php echo $category['categorie']; ?>', '<?php echo $category['code']; ?>')">Aanpassen</button>
+                            <button type="submit" name="confirmDelete" class="btn btn-danger btn-sm">Verwijderen</button>
                         </form>
                     </td>
                 </tr>
@@ -113,14 +115,14 @@ $categories = readCategories($pdo);
     </table>
 
     <!-- Button to open Create Category modal -->
-    <button type="button" class="btn btn-success mt-3" onclick="openCreateModal()">Create Category</button>
+    <button type="button" class="btn btn-success mt-3" onclick="openCreateModal()">Categorie aanmaken</button>
 
     <!-- Create Category Modal -->
     <div class="modal" id="createCategoryModal" tabindex="-1" role="dialog" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createCategoryModalLabel">Create Category</h5>
+                    <h5 class="modal-title" id="createCategoryModalLabel">Categorie aanmaken</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal('#createCategoryModal')">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -129,14 +131,14 @@ $categories = readCategories($pdo);
                     <!-- Form for creating a category -->
                     <form method="post" action="categorie.php">
                         <div class="form-group">
-                            <label for="categoryName">Category Name:</label>
+                            <label for="categoryName">Categorie Naam:</label>
                             <input type="text" class="form-control" name="categoryName" required>
                         </div>
                         <div class="form-group">
                             <label for="categoryCode">Category Code (max 3 characters):</label>
                             <input type="text" class="form-control" name="categoryCode" maxlength="3" required>
                         </div>
-                        <button type="submit" name="createCategory" class="btn btn-success">Create Category</button>
+                        <button type="submit" name="createCategory" class="btn btn-success">Aanmaken Category</button>
                     </form>
                 </div>
             </div>
@@ -148,7 +150,7 @@ $categories = readCategories($pdo);
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                    <h5 class="modal-title" id="editCategoryModalLabel">Aanpassen Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal('#editCategoryModal')">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -158,14 +160,14 @@ $categories = readCategories($pdo);
                     <form method="post" action="categorie.php">
                         <input type="hidden" id="editCategoryId" name="id">
                         <div class="form-group">
-                            <label for="editCategoryName">Category Name:</label>
+                            <label for="editCategoryName">Category Naam:</label>
                             <input type="text" class="form-control" id="editCategoryName" name="categoryName" required>
                         </div>
                         <div class="form-group">
                             <label for="editCategoryCode">Category Code (max 3 characters):</label>
                             <input type="text" class="form-control" id="editCategoryCode" name="categoryCode" maxlength="3" required>
                         </div>
-                        <button type="submit" name="updateCategory" class="btn btn-primary">Update Category</button>
+                        <button type="submit" name="updateCategory" class="btn btn-primary">Aanpassen Category</button>
                     </form>
                 </div>
             </div>
