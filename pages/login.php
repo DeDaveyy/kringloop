@@ -88,8 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="password">Wachtwoord</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary mainbuttons">Login</button>
+                    <button type="submit" class="btn btn-primary loginbutton">Login</button>
                 </form>
+                <button class="btn btn-primary mainbuttons"><a href="../pages/registreer.php" class="text-white">Registreer</a></button>
             </div>
         </div>
     </div>

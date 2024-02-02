@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../src/style/main.css">
 <?php
 // Database configureren
 $dbHost = 'localhost';
@@ -92,8 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="wachtwoord">wachtwoord</label>
                         <input type="password" class="form-control" id="wachtwoord" name="wachtwoord" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Registreer</button>
+                    <button type="submit" class="btn btn-primary loginbutton">Registreer</button>
                 </form>
+                <button class="btn btn-primary mainbuttons"><a href="../pages/login.php" class="text-white">Login</a></button>
             </div>
         </div>
     </div>
