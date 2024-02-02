@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Your Page Title</title>
+    <title>Kringloop</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -43,7 +43,7 @@
         </li>
         <li class="nav-item">
             <i class="fas fa-list"></i>
-            <a class="nav-link" href="#">Klantgegevens</a>
+            <a class="nav-link" href="../pages/klant.php">Klantgegevens</a>
         </li>
         <li class="nav-item">
             <i class="fas fa-list"></i>

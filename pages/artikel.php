@@ -90,7 +90,7 @@ $categories = readCategories($pdo);
     <form class="form-inline mb-3">
         <div class="form-group mx-sm-3 mb-2">
             <label for="searchInput" class="sr-only">Zoeken</label>
-            <input type="text" class="form-control" id="searchInput" placeholder="Search by name or category">
+            <input type="text" class="form-control" id="searchInput" placeholder="Zoek bij naam of categorie">
         </div>
         <button type="button" class="btn btn-primary mb-2" onclick="searchArtikels()" placeholder="Nog niet functioneel">Zoek</button>
     </form>
@@ -117,8 +117,8 @@ $categories = readCategories($pdo);
                     <td>
                         <form method="post" action="">
                             <input type="hidden" name="id" value="<?php echo $artikel['artikel_id']; ?>">
-                            <button type="button" class="btn btn-warning btn-sm" onclick="openEditModal(<?php echo $artikel['artikel_id']; ?>, '<?php echo $artikel['naam']; ?>', <?php echo $artikel['categorie_id']; ?>, '<?php echo $artikel['prijs_ex_btw']; ?>')">Edit</button>
-                            <button type="submit" name="confirmDelete" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="button" class="btn btn-warning btn-sm" onclick="openEditModal(<?php echo $artikel['artikel_id']; ?>, '<?php echo $artikel['naam']; ?>', <?php echo $artikel['categorie_id']; ?>, '<?php echo $artikel['prijs_ex_btw']; ?>')">Aanpassen</button>
+                            <button type="submit" name="confirmDelete" class="btn btn-danger btn-sm">Verwijderen</button>
                         </form>
                     </td>
                 </tr>
@@ -127,14 +127,15 @@ $categories = readCategories($pdo);
     </table>
 
     <!-- Button to open Create Artikel modal -->
-    <button type="button" class="btn btn-success mt-3" onclick="openCreateModal()">Create Artikel</button>
+    <button type="button" class="btn btn-success mt-3" onclick="openCreateModal()">
+     Artikel aanmaken</button>
 
 <!-- Create Artikel Modal -->
 <div class="modal" id="createArtikelModal" tabindex="-1" role="dialog" aria-labelledby="createArtikelModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createArtikelModalLabel">Create Artikel</h5>
+                <h5 class="modal-title" id="createArtikelModalLabel">Aanmaken Artikel</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal('#createArtikelModal')">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -158,7 +159,7 @@ $categories = readCategories($pdo);
                         <label for="createArtikelPrijsExBtw">Prijs (excl. BTW):</label>
                         <input type="text" class="form-control" id="createArtikelPrijsExBtw" name="create_prijs_ex_btw" required>
                     </div>
-                    <button type="submit" name="createArtikel" class="btn btn-success">Create Artikel</button>
+                    <button type="submit" name="createArtikel" class="btn btn-success">Aanmaken Artikel</button>
                 </form>
             </div>
         </div>
@@ -170,7 +171,7 @@ $categories = readCategories($pdo);
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editArtikelModalLabel">Edit Artikel</h5>
+                <h5 class="modal-title" id="editArtikelModalLabel">Aanpassen Artikel</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal('#editArtikelModal')">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -195,7 +196,7 @@ $categories = readCategories($pdo);
                         <label for="editArtikelPrijsExBtw">Prijs (excl. BTW):</label>
                         <input type="text" class="form-control" id="editArtikelPrijsExBtw" name="update_prijs_ex_btw" required>
                     </div>
-                    <button type="submit" name="updateArtikel" class="btn btn-primary">Update Artikel</button>
+                    <button type="submit" name="updateArtikel" class="btn btn-primary">Aanpassen Artikel</button>
                 </form>
             </div>
         </div>
