@@ -1,21 +1,8 @@
 <?php
 include ("./includes/header.includes.php");
 ?>
-
+<link rel="stylesheet" href="src/style/main.css">
 <head>
-<style>
-  /* Style voor achtergrond- en tekstkleur */
-    .card {
-      background-color: #fff;
-    }
-    .btn-primary {
-      width: 250px;
-    }
-    .mainbuttons {
-      border-radius: 100px!important;
-      background-color: #043a74;
-    }
-</style>
 </head>
 <main class="mt-3">
 <div class="container mt-5">
