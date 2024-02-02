@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Gegenereerd op: 01 feb 2024 om 13:22
--- Serverversie: 10.4.32-MariaDB
--- PHP-versie: 8.2.12
+-- Host: localhost
+-- Gegenereerd op: 02 feb 2024 om 10:39
+-- Serverversie: 10.4.28-MariaDB
+-- PHP-versie: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,8 +42,18 @@ CREATE TABLE `artikel` (
 
 CREATE TABLE `categorie` (
   `id` int(11) NOT NULL,
-  `categorie` varchar(255) NOT NULL
+  `categorie` varchar(255) NOT NULL,
+  `code` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `categorie`
+--
+
+INSERT INTO `categorie` (`id`, `categorie`, `code`) VALUES
+(3, 'Schoen', 'Sch'),
+(5, 'Jas', 'Jas'),
+(6, 'Petten', 'Pet');
 
 -- --------------------------------------------------------
 
@@ -55,9 +65,17 @@ CREATE TABLE `gebruiker` (
   `id` int(11) NOT NULL,
   `gebruikersnaam` varchar(255) NOT NULL,
   `wachtwoord` varchar(255) NOT NULL,
-  `rollen` text NOT NULL,
-  `is_geverifieerd` tinyint(1) NOT NULL
+  `rollen` text DEFAULT NULL,
+  `is_geverifieerd` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `gebruiker`
+--
+
+INSERT INTO `gebruiker` (`id`, `gebruikersnaam`, `wachtwoord`, `rollen`, `is_geverifieerd`) VALUES
+(1, 'Test', 'test123', 'admin', 1),
+(2, 'newuser', '$2y$10$Ld2fbMWk1UDfASNqh9sA0e3XYjv0NoI8V5hAZJPpbLzv9HDI8LT8.', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -201,7 +219,13 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT voor een tabel `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT voor een tabel `gebruiker`
+--
+ALTER TABLE `gebruiker`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `klant`
