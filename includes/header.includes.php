@@ -53,22 +53,17 @@
                     Admin
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <a class="dropdown-item" href="#">Admin Item 1</a>
-                    <a class="dropdown-item" href="#" data-toggle="dropdown-submenu" aria-haspopup="true" aria-expanded="false">Admin Item 2</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Sub-Item 1</a>
-                        <a class="dropdown-item" href="#">Sub-Item 2</a>
-                        <a class="dropdown-item" href="#">Sub-Item 3</a>
-                    </div>
-                    <a class="dropdown-item" href="#">Admin Item 3</a>
+                    <a class="dropdown-item" href="#">Voorraadbeheer</a>
+                    <a class="dropdown-item" href="#" data-toggle="dropdown-submenu" aria-haspopup="true" aria-expanded="false">Kledingstukken</a>
+                    <a class="dropdown-item" href="#">Klanten</a>
                 </div>
             </li>
         </ul>
-        <a class="btn custom-button" href="./pages/login.php">Aanmelden</a>
+        <a class="btn custom-button" href="./pages/login.php">Uitloggen</a>
     </div>
 </nav>
 
-<!-- Bootstrap JS and dependencies -->
+<!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
