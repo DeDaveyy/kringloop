@@ -1,4 +1,7 @@
-<?php include("../includes/leftheader.php"); include("../classes/dbh.class.php"); ?>
+<?php 
+    include("../includes/leftheader.php"); 
+    include("../classes/dbh.class.php"); 
+?>
 
 
 <!DOCTYPE html>
