@@ -9,7 +9,7 @@
     <style>
 
         .navbar-custom {
-            background-color: #007bff; 
+            background-color: #043a74; 
         }
         .navbar-custom a {
             color: #fff !important; 
@@ -18,7 +18,7 @@
             color: #000 !important; 
         }
         .custom-button {
-            background-color: #007bff; 
+            background-color: #043a74; 
             color: #fff !important; 
             border: 1px solid #fff; 
             border-radius: 5px; 
