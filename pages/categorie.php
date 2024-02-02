@@ -77,16 +77,15 @@ $categories = readCategories($pdo);
 <div class="container mt-4">
     <h1 class="mb-4">Categories</h1>
 
-    <!-- Search bar -->
+    <!-- Zoekbalk -->
     <form class="form-inline mb-3">
         <div class="form-group mx-sm-3 mb-2">
-            <label for="searchInput" class="sr-only">Search</label>
+            <label for="searchInput" class="sr-only">Zoeken</label>
             <input type="text" class="form-control" id="searchInput" placeholder="Search by name or code">
         </div>
-        <button type="button" class="btn btn-primary mb-2" onclick="searchCategories()">Search</button>
+        <button type="button" class="btn btn-primary mb-2" onclick="searchCategories()">Zoek</button>
     </form>
 
-    <!-- Display existing categories as a table -->
     <table class="table">
         <thead>
             <tr>
@@ -114,10 +113,8 @@ $categories = readCategories($pdo);
         </tbody>
     </table>
 
-    <!-- Button to open Create Category modal -->
     <button type="button" class="btn btn-success mt-3" onclick="openCreateModal()">Categorie aanmaken</button>
 
-    <!-- Create Category Modal -->
     <div class="modal" id="createCategoryModal" tabindex="-1" role="dialog" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -128,7 +125,6 @@ $categories = readCategories($pdo);
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Form for creating a category -->
                     <form method="post" action="categorie.php">
                         <div class="form-group">
                             <label for="categoryName">Categorie Naam:</label>
@@ -144,8 +140,6 @@ $categories = readCategories($pdo);
             </div>
         </div>
     </div>
-
-    <!-- Edit Category Modal -->
     <div class="modal" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -156,7 +150,6 @@ $categories = readCategories($pdo);
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Form for editing a category -->
                     <form method="post" action="categorie.php">
                         <input type="hidden" id="editCategoryId" name="id">
                         <div class="form-group">
@@ -174,7 +167,6 @@ $categories = readCategories($pdo);
         </div>
     </div>
 
-    <!-- Modal overlay -->
     <div class="modal-overlay" onclick="closeAllModals()"></div>
 
 </div>
@@ -208,25 +200,24 @@ src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
 
 
     function openEditModal(id, categoryName, categoryCode) {
-    // Set values in the Edit Category Modal
+
     document.getElementById('editCategoryId').value = id;
     document.getElementById('editCategoryName').value = categoryName;
     document.getElementById('editCategoryCode').value = categoryCode;
 
-    // Open the Edit Category Modal
     document.getElementById('editCategoryModal').style.display = 'block';
     document.querySelector('.modal-overlay').style.display = 'block';
 }
 
 
     function openCreateModal() {
-        // Open the Create Category Modal
+
         document.getElementById('createCategoryModal').style.display = 'block';
         document.querySelector('.modal-overlay').style.display = 'block';
     }
 
     function closeModal(modalId) {
-        // Close the modal
+
         document.querySelector(modalId).style.display = 'none';
         document.querySelector('.modal-overlay').style.display = 'none';
     }

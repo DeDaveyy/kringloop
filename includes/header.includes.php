@@ -53,7 +53,7 @@
                     Admin
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <a class="dropdown-item" href="#">Voorraadbeheer</a>
+                    <a class="dropdown-item" href="./pages/dashboard.php">Dashboard</a>
                     <a class="dropdown-item" href="#" data-toggle="dropdown-submenu" aria-haspopup="true" aria-expanded="false">Kledingstukken</a>
                     <a class="dropdown-item" href="#">Klanten</a>
                 </div>

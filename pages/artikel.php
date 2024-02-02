@@ -2,8 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
-require ("../functions/artikel.crud.php");
+//Benodigde files
+require ("../functions/artikel.function.php");
 require ("../classes/dbh.class.php");
 require ("../includes/leftheader.includes.php");
 require ("../functions/categorie.function.php");
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $naam = $_POST['create_naam'];
         $prijs_ex_btw = $_POST['create_prijs_ex_btw'];
         createArtikel($pdo, $categorie_id, $naam, $prijs_ex_btw);
-        header("Location: artikel.php"); // Redirect after form submission
+        header("Location: artikel.php"); // Stuurt je terug nadat de functie is uitgevoerd
         exit();
     } elseif (isset($_POST['updateArtikel'])) {
         $id = $_POST['id'];
@@ -24,12 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $naam = $_POST['update_naam'];
         $prijs_ex_btw = $_POST['update_prijs_ex_btw'];
         updateArtikel($pdo, $id, $categorie_id, $naam, $prijs_ex_btw);
-        header("Location: artikel.php"); // Redirect after form submission
+        header("Location: artikel.php"); // Stuurt je terug nadat de functie is uitgevoerd
         exit();
     } elseif (isset($_POST['confirmDelete'])) {
         $id = $_POST['id'];
         deleteArtikel($pdo, $id);
-        header("Location: artikel.php"); // Redirect after form submission
+        header("Location: artikel.php"); // Stuurt je terug nadat de functie is uitgevoerd
         exit();
     }
 }
@@ -50,7 +50,6 @@ $categories = readCategories($pdo);
         body {
             background-color: #f8f9fa;
         }
-
         .container {
             background-color: #ffffff;
             padding: 20px;
@@ -60,7 +59,6 @@ $categories = readCategories($pdo);
             margin-left: 25%;
             width: 70%;
         }
-
         .list-group-item {
             display: flex;
             justify-content: space-between;
@@ -74,7 +72,6 @@ $categories = readCategories($pdo);
         .modal-footer {
             border-top: none;
         }
-
         .modal-overlay {
             display: none;
             position: fixed;
@@ -90,16 +87,14 @@ $categories = readCategories($pdo);
 <div class="container mt-4">
     <h1 class="mb-4">Artikels</h1>
 
-    <!-- Search bar -->
     <form class="form-inline mb-3">
         <div class="form-group mx-sm-3 mb-2">
-            <label for="searchInput" class="sr-only">Search</label>
+            <label for="searchInput" class="sr-only">Zoeken</label>
             <input type="text" class="form-control" id="searchInput" placeholder="Search by name or category">
         </div>
-        <button type="button" class="btn btn-primary mb-2" onclick="searchArtikels()">Search</button>
+        <button type="button" class="btn btn-primary mb-2" onclick="searchArtikels()" placeholder="Nog niet functioneel">Zoek</button>
     </form>
 
-    <!-- Display existing artikels as a table -->
     <table class="table">
         <thead>
             <tr>

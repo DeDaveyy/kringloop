@@ -31,11 +31,11 @@
     <ul class="nav flex-column">
         <li class="nav-item">
             <i class="fa-solid fa-house"></i>
-            <a class="nav-link" href="../index.php">Dashboard</a>
+            <a class="nav-link" href="../pages/dashboard.php">Dashboard</a>
         </li>
         <li class="nav-item">
             <i class="fas fa-arrow-left"></i>
-            <a class="nav-link" href="#">Hoofdpagina</a>
+            <a class="nav-link" href="../index.php">Hoofdpagina</a>
         </li>
         <li class="nav-item">
             <i class="fas fa-list"></i>
