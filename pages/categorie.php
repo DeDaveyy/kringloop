@@ -1,27 +1,26 @@
 <?php
 require_once('../functions/categorie.crud.php');
-
-$dbh = new Dbh();
-$db = $dbh->getConnection();
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include ("../includes/leftheader.includes.php");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['createCategory'])) {
         $name = $_POST['categoryName'];
         $code = $_POST['categoryCode'];
-        createCategorie($db, $name, $code);
+        createCategorie($pdo, $name, $code);
     } elseif (isset($_POST['updateCategory'])) {
         $id = $_POST['id'];
         $name = $_POST['categoryName'];
         $code = $_POST['categoryCode'];
-        updateCategorie($db, $id, $name, $code);
+        updateCategorie($pdo, $id, $name, $code);
     } elseif (isset($_POST['confirmDelete'])) {
         $id = $_POST['id'];
-        deleteCategorie($db, $id);
+        deleteCategorie($pdo, $id);
     }
 }
 
-$categories = readCategories($db);
+$categories = readCategories($pdo);
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +31,34 @@ $categories = readCategories($db);
     <title>Category Management</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Add overlay styling */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            margin-left: 25%;
+            width: 70%;
+        }
+
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            border-top: none;
+        }
+
         .modal-overlay {
             display: none;
             position: fixed;
@@ -47,7 +73,7 @@ $categories = readCategories($db);
 <body>
 
 <div class="container mt-4">
-    <h1>Categories</h1>
+    <h1 class="mb-4">Categories</h1>
 
     <!-- Search bar -->
     <form class="form-inline mb-3">
@@ -58,23 +84,33 @@ $categories = readCategories($db);
         <button type="button" class="btn btn-primary mb-2" onclick="searchCategories()">Search</button>
     </form>
 
-    <!-- Display existing categories -->
-    <ul class="list-group">
-        <?php foreach ($categories as $category) : ?>
-            <li class="list-group-item">
-                <label>
-                    <input type="radio" name="selectedCategory" value="<?php echo $category['id']; ?>">
-                    <?php echo $category['categorie']; ?>
-                </label>
-                <span class="badge badge-secondary"><?php echo $category['code']; ?></span>
-                <form method="post" action="categorie.php" class="float-right">
-                    <input type="hidden" name="id" value="<?php echo $category['id']; ?>">
-                    <button type="button" class="btn btn-warning btn-sm" onclick="openEditModal(this)">Edit</button>
-                    <button type="submit" name="confirmDelete" class="btn btn-danger btn-sm">Delete</button>
-                </form>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+    <!-- Display existing categories as a table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category Name</th>
+                <th>Category Code</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($categories as $category) : ?>
+                <tr>
+                    <td><?php echo $category['id']; ?></td>
+                    <td><?php echo $category['categorie']; ?></td>
+                    <td><?php echo $category['code']; ?></td>
+                    <td>
+                        <form method="post" action="categorie.php">
+                            <input type="hidden" name="id" value="<?php echo $category['id']; ?>">
+                            <button type="button" class="btn btn-warning btn-sm" onclick="openEditModal(<?php echo $category['id']; ?>, '<?php echo $category['categorie']; ?>', '<?php echo $category['code']; ?>')">Edit</button>
+                            <button type="submit" name="confirmDelete" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
     <!-- Button to open Create Category modal -->
     <button type="button" class="btn btn-success mt-3" onclick="openCreateModal()">Create Category</button>
@@ -141,7 +177,9 @@ $categories = readCategories($db);
 
 </div>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script 
+src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+</script>
 
 <script>
     document.addEventListener('keydown', function(event) {
@@ -151,36 +189,33 @@ $categories = readCategories($db);
     });
 
     function searchCategories() {
-        var searchInput = document.getElementById('searchInput').value.toLowerCase();
-        var listItems = document.querySelectorAll('.list-group-item');
+    var searchInput = document.getElementById('searchInput').value.toLowerCase();
+    var tableRows = document.querySelectorAll('.table tbody tr');
 
-        listItems.forEach(function(item) {
-            var categoryName = item.querySelector('label').innerText.toLowerCase();
-            var categoryCode = item.querySelector('.badge').innerText.toLowerCase();
+    tableRows.forEach(function(row) {
+        var categoryName = row.querySelector('td:nth-child(2)').innerText.toLowerCase();
+        var categoryCode = row.querySelector('td:nth-child(3)').innerText.toLowerCase();
 
-            if (categoryName.includes(searchInput) || categoryCode.includes(searchInput)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    }
+        if (categoryName.includes(searchInput) || categoryCode.includes(searchInput)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
 
-    function openEditModal(button) {
-        var listItem = button.closest('.list-group-item');
-        var categoryId = listItem.querySelector('input[name="selectedCategory"]').value;
-        var categoryName = listItem.querySelector('label').innerText;
-        var categoryCode = listItem.querySelector('.badge').innerText;
 
-        // Set values in the Edit Category Modal
-        document.getElementById('editCategoryId').value = categoryId;
-        document.getElementById('editCategoryName').value = categoryName;
-        document.getElementById('editCategoryCode').value = categoryCode;
+    function openEditModal(id, categoryName, categoryCode) {
+    // Set values in the Edit Category Modal
+    document.getElementById('editCategoryId').value = id;
+    document.getElementById('editCategoryName').value = categoryName;
+    document.getElementById('editCategoryCode').value = categoryCode;
 
-        // Open the Edit Category Modal
-        document.getElementById('editCategoryModal').style.display = 'block';
-        document.querySelector('.modal-overlay').style.display = 'block';
-    }
+    // Open the Edit Category Modal
+    document.getElementById('editCategoryModal').style.display = 'block';
+    document.querySelector('.modal-overlay').style.display = 'block';
+}
+
 
     function openCreateModal() {
         // Open the Create Category Modal
